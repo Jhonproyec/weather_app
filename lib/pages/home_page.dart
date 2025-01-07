@@ -8,45 +8,49 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          title: Text(
-            "Climas",
-            style: semiboldText,
-          ),
-          backgroundColor: Colors.white,
-          actions: [menuButton(context)],
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+          "Climas",
+          style: semiboldText,
         ),
-        body: Container(  
-          decoration: BoxDecoration( 
-            color: Colors.white
-          ),
-          padding: EdgeInsets.only( left: 20, right: 20),
-          child: ListCitiesWeather(),
-        ),
-
+        backgroundColor: Colors.transparent,
+        actions: [menuButton()],
       ),
+      body: Container(  
+        padding: EdgeInsets.only(top: 60),
+        decoration: BoxDecoration(
+                      gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment(1, 3),
+            colors: [
+              Color(0xff3e61db),
+              Color(0xff69a7ea),
+            ],
+          ),
+        ),
+        // child: HeaderScreen(),
+        child: ListCitiesWeather(),
+      ),
+    
     );
   }
 
-  Container menuButton(BuildContext context) {
+  Container menuButton() {
     return Container(
       margin: EdgeInsets.only(right: 15),
       child: Ink(
         height: 35,
         width: 35,
         decoration:
-            ShapeDecoration(color: Colors.grey.shade300, shape: CircleBorder(),),
+            ShapeDecoration(color: Colors.white10, shape: CircleBorder()),
         child: IconButton(
           padding: EdgeInsets.all(5),
-          onPressed: () {
-            Navigator.pushNamed(context, '/search_cities');
-          },
+          onPressed: () {},
           icon: Icon(
             FontAwesomeIcons.magnifyingGlass,
-            color: Color(0xff37393e),
+            color: Colors.white,
             size: 18,
           ),
         ),
