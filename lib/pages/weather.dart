@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
+import 'package:weather_app/providers/weather_provider.dart';
 import 'package:weather_app/themes/background.dart';
 import 'package:weather_app/themes/text_style.dart';
 
-class Weather extends StatelessWidget {
+class Weather extends StatefulWidget {
   const Weather({super.key});
+
+  @override
+  State<Weather> createState() => _WeatherState();
+}
+
+class _WeatherState extends State<Weather> {
+  @override
+  void initState(){
+    super.initState();
+    requestLocation();
+  }
+
+  Future<void> requestLocation() async{
+    await Provider.of<WeatherProvider>(context, listen: false).requestLocation();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +36,7 @@ class Weather extends StatelessWidget {
       {"hour": "5:00", "temp": "18°"},
       {"hour": "6:00", "temp": "18°"},
     ];
+    Provider.of<WeatherProvider>(context, listen: false).requestLocation(); 
 
     return Scaffold(
       body: SingleChildScrollView(
